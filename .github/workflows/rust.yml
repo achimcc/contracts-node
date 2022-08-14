@@ -36,7 +36,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable
+          toolchain: nightly
           components: clippy
 
       - uses: actions/checkout@v3
@@ -50,13 +50,13 @@ jobs:
   build:
    runs-on: 'ubuntu-latest'
    steps:
-      - uses: actions/checkout@v3
-      
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
           target: wasm32-unknown-unknown 
+          
+      - uses: actions/checkout@v3
       
       - name: Cargo build
         uses: actions-rs/cargo@v1
