@@ -47,6 +47,9 @@ jobs:
           toolchain: stable
           command: clippy
           
+  build:
+   runs-on: 'ubuntu-latest'
+   steps:     
       - name: Cargo build
         uses: actions-rs/cargo@v1
         with:
