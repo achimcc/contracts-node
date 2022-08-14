@@ -1,1 +1,54 @@
-#empty
+name: Rust
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rustfmt:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          components: rustfmt
+
+      - uses: actions/checkout@v3
+
+      - name: Cargo fmt
+        uses: actions-rs/cargo@v1
+        with:
+          toolchain: stable
+          command: fmt
+          args: --all -- --check
+
+  clippy:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          components: clippy
+
+      - uses: actions/checkout@v3
+
+      - name: Cargo clippy
+        uses: actions-rs/cargo@v1
+        with:
+          toolchain: stable
+          command: clippy
+          
+      - name: Cargo build
+        uses: actions-rs/cargo@v1
+        with:
+          toolchain: stable
+          command: build
