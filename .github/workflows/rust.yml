@@ -35,6 +35,12 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
           toolchain: nightly
           target: wasm32-unknown-unknown 
 
@@ -43,7 +49,7 @@ jobs:
       - name: Cargo clippy
         uses: actions-rs/cargo@v1
         with:
-          toolchain: stable
+          toolchain: nightly
           command: clippy
           
   build:
@@ -63,11 +69,4 @@ jobs:
           toolchain: stable
           command: build
           args: --release
-          
-      - name: Cargo clippy
-        uses: actions-rs/cargo@v1
-        with:
-          toolchain: stable
-          command: clippy
-          args: --release
-
+        
