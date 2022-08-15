@@ -37,12 +37,14 @@ jobs:
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
+          components: clippy
           
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
           target: wasm32-unknown-unknown 
+          components: clippy
 
       - uses: actions/checkout@v3
 
