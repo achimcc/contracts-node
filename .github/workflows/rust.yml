@@ -27,6 +27,7 @@ jobs:
         with:
           toolchain: nightly
           command: fmt
+          cwd: ./qdao-node
           args: --all -- --check
 
   clippy:
@@ -45,6 +46,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           toolchain: stable
+          cwd: ./qdao-node
           command: clippy
           
   build:
@@ -63,4 +65,5 @@ jobs:
         with:
           toolchain: stable
           command: build
+          cwd: ./qdao-node
           args: --release
